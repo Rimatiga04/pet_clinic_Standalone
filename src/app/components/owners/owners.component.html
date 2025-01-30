@@ -1,1 +1,27 @@
-<p>owners works!</p>
+<div class="container">
+  <h2>Lista de Dueños</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr class="table-success">
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Telephone</th>
+        <th>Mascotas</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(dueno of owners; track $index){
+      <tr>
+        <td>{{ dueno.firstName }} {{ dueno.lastName }}</td>
+        <td>{{ dueno.address }}</td>
+        <td>{{ dueno.city }}</td>
+        <td>{{ dueno.telephone }}</td>
+        <td>{{ dueno.pets }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <button routerLink="/owner-add/-1">Añadir Owner</button>
+</div>
