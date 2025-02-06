@@ -17,9 +17,11 @@ export class FormOwnerComponent {
   constructor(private peticion: OwnerService, private ruta: Router, private router: ActivatedRoute) {
     this.owner.id = -1;
     this.textoBoton = "Añadir Owner";
+    console.log("Llega");
   }
-  ngOninit() {
-    const ownerId = this.router.snapshot.params["id"]
+  ngOnInit() {
+    const ownerId = this.router.snapshot.params["id"];
+    console.log("Id", ownerId);
     if (ownerId == -1) {
       this.textoBoton = "Añadir Owner";
     }

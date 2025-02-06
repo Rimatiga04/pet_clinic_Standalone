@@ -43,4 +43,13 @@ export class OwnerService {
     }
     return this.http.post<Owner>(this.url, cuerpo);
   }
+
+  delOwner(id: number) {
+    let cuerpo = {
+      accion: "BorraOwner",
+      id: id,
+      listado: "OK"
+    }
+    return this.http.post<Owner>(this.url, cuerpo);
+  }
 }

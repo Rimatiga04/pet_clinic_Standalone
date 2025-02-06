@@ -1,1 +1,39 @@
-<p>detail-owner works!</p>
+<div class="container">
+  <h2>Propietario</h2>
+  <table class="table table-striped">
+    <tr>
+      <td>Nombre:</td>
+      <td>{{owner.firstName}} {{owner.lastName}}</td>
+    </tr>
+    <tr>
+      <td>Direccion: </td>
+      <td>{{owner.address}}</td>
+    </tr>
+    <tr>
+      <td>Ciudad: </td>
+      <td>{{owner.city}}</td>
+    </tr>
+    <tr>
+      <td>Telefono: </td>
+      <td>{{owner.telephone}}</td>
+    </tr>
+    <tr>
+
+    </tr>
+  </table>
+  <div>
+    <a routerLink="/" routerLinkActive="active">
+      <button type="button" class="btn btn-light"><- Volver</button>
+
+    </a>
+    <a routerLink="/owner-add/{{owner.id}}" routerLinkActive="active">
+      <button type="button" class="btn btn-light">Modificar Owner</button>
+    </a>
+    <button type="button" class="btn btn-light" (click)="eliminarOwner()">Eliminar Owner</button>
+    <a>
+      <button type="button" class="btn btn-light">Añadir Pet</button>
+    </a>
+  </div>
+
+
+</div>
