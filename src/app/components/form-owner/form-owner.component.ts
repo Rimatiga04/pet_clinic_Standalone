@@ -21,10 +21,17 @@ export class FormOwnerComponent {
   ngOninit() {
     const ownerId = this.router.snapshot.params["id"]
     if (ownerId == -1) {
-      this.textoBoton = "Añadir Owner"
+      this.textoBoton = "Añadir Owner";
     }
     else {
-      this.textoBoton = "Modificar Owner"
+      this.textoBoton = "Modificar Owner";
+      this.peticion.selOwner(ownerId).subscribe({
+        next: datos => {
+          console.log(datos);
+          this.owner = datos;
+        },
+        error: error => console.log("Error:", error)
+      });
     }
   }
   onSubmit() {
@@ -33,11 +40,17 @@ export class FormOwnerComponent {
       this.peticion.insertOwners(this.owner).subscribe({
         next: datos => {
           this.ruta.navigate(["/"]);
-        }
+        },
+        error: error => console.log("Error: ", error)
       })
     }
-    else{
-      
+    else {
+      this.peticion.modOwner(this.owner).subscribe({
+        next: datos => {
+          console.log("Owner Modificado");
+          this.ruta.navigate(["/"]);
+        }
+      })
     }
   }
 }

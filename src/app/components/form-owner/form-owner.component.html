@@ -18,21 +18,21 @@
   <div class="mb-3">
     <label>Direccion:</label>
     <input type="text" class="form-control" required [(ngModel)]="owner.address" name="direccion" #direccion="ngModel">
-    <div [hidden]="apellidos.valid || apellidos.pristine" class="alert alert-danger">
+    <div [hidden]="direccion.valid || direccion.pristine" class="alert alert-danger">
       La Direccion es obligatoria
     </div>
   </div>
   <div class="mb-3">
     <label>Ciudad:</label>
     <input type="text" class="form-control" required [(ngModel)]="owner.city" name="ciudad" #ciudad="ngModel">
-    <div [hidden]="apellidos.valid || apellidos.pristine" class="alert alert-danger">
+    <div [hidden]="ciudad.valid || ciudad.pristine" class="alert alert-danger">
       La Ciudad es obligatoria
     </div>
   </div>
   <div class="mb-3">
     <label>Telefono:</label>
     <input type="text" class="form-control" required [(ngModel)]="owner.telephone" name="telefono" #telefono="ngModel">
-    <div [hidden]="apellidos.valid || apellidos.pristine" class="alert alert-danger">
+    <div [hidden]="telefono.valid || telefono.pristine" class="alert alert-danger">
       El Telefono es obligatorio
     </div>
   </div>

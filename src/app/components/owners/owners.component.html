@@ -13,7 +13,7 @@
     <tbody>
       @for(dueno of owners; track $index){
       <tr>
-        <td>{{ dueno.firstName }} {{ dueno.lastName }}</td>
+        <td><a routerLink="/owner-add/{{dueno.id}}">{{ dueno.firstName }} {{ dueno.lastName }}</a></td>
         <td>{{ dueno.address }}</td>
         <td>{{ dueno.city }}</td>
         <td>{{ dueno.telephone }}</td>
