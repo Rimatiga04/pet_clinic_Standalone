@@ -1,1 +1,38 @@
-<p>pet-list works!</p>
+<div class="container">
+  <table class="table table-striped">
+    <tr>
+      <td>
+        <dl>
+          <dt>Name</dt>
+          <dd>{{pet.name}}</dd>
+          <dt>Birth Date</dt>
+          <dd>{{pet.birthDate | date: "dd-MM-yyyy"}}</dd>
+          <dt>Type</dt>
+          <dd>{{pet.typeName}}</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        @if(pet.visits && pet.visits.length > 0){
+        @for(visita of pet.visits; track $index){
+        <app-visit-list></app-visit-list>
+        }
+        }
+      </td>
+    </tr>
+
+
+    <a routerLink=>
+      <button class="btn btn-default" type="button">Edit pet</button>
+    </a><!--"/pets-mod/{{pet.id}}"s-->
+    <a routerLink=>
+      <button class="btn btn-default" type="button">Delete pet</button>
+    </a>
+    <a routerLink=>
+      <button class="btn btn-default" type="button">Add Visit</button>
+    </a>
+  </table>
+
+
+</div>

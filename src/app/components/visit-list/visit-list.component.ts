@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, Input } from '@angular/core';
+import { Visit } from '../../models/visit';
 @Component({
   selector: 'app-visit-list',
   imports: [],
@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './visit-list.component.css'
 })
 export class VisitListComponent {
+  @Input() visit: Visit= <Visit>{};
 
+  constructor(){
+
+  }
 }

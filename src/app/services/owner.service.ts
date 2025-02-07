@@ -38,7 +38,7 @@ export class OwnerService {
   }
   selOwner(id: number) {
     let cuerpo = {
-      accion: "ObtenerOwnerId",
+      accion: "ObtenerOwnerId_Pets",
       id: id
     }
     return this.http.post<Owner>(this.url, cuerpo);

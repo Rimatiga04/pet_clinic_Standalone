@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Owner } from '../../models/owner';
 import { OwnerService } from '../../services/owner.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { PetListComponent } from "../pet-list/pet-list.component";
 
 @Component({
   selector: 'app-detail-owner',
-  imports: [RouterLink,],
+  imports: [RouterLink, PetListComponent],
   templateUrl: './detail-owner.component.html',
   styleUrl: './detail-owner.component.css'
 })

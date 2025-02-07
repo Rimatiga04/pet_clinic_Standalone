@@ -34,6 +34,19 @@
       <button type="button" class="btn btn-light">Añadir Pet</button>
     </a>
   </div>
+</div>
+<br>
+<div class="container">
+  @if(owner.pets && owner.pets.length > 0){
+  <h3>Pets and visits</h3>
+  <table>
+    <tr>
+      @for(pet of owner.pets; track $index){
+      <app-pet-list [pet]="pet"></app-pet-list>
+      }
+    </tr>
+  </table>
 
+  }
 
 </div>
