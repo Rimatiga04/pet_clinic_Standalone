@@ -16,7 +16,7 @@
       <td>
         @if(pet.visits && pet.visits.length > 0){
         @for(visita of pet.visits; track $index){
-        <app-visit-list></app-visit-list>
+        <app-visit-list [visit]="visita"></app-visit-list>
         }
         }
       </td>

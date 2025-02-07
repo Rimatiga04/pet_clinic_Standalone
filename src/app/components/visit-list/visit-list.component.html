@@ -1,1 +1,17 @@
-<p>visit-list works!</p>
+<table>
+
+  <tr>
+    <td>Date: </td>
+    <td>{{visit.visitDate | date :"dd-MM-yyyy"}}</td>
+  </tr>
+  <tr>
+    <td>Description: </td>
+    <td>{{visit.description}}</td>
+  </tr>
+  <a routerLink=>
+    <button class="btn btn-default" type="button">Delete Visit</button>
+  </a>
+  <a routerLink=>
+    <button class="btn btn-default" type="button">Edit Visit</button>
+  </a>
+</table>
