@@ -6,9 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PetService } from '../../services/pet.service';
 import { PetTypeService } from '../../services/pet-type.service';
 import { OwnerService } from '../../services/owner.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-pet-add',
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './pet-add.component.html',
   styleUrl: './pet-add.component.css'
 })
@@ -28,13 +30,20 @@ export class PetAddComponent {
     this.current_type = <PetType>{}
     this.pet_types = [];
     this.pet.birthDate = new Date();
-    this.accion = "Add";
+    this.accion = "Add Pet";
   }
 
   ngOnInit() {
     this.servicioPetType.getPetTypes().subscribe({
-      next: datos => this.pet_types = datos,
+      next: datos => {
+        console.log("Datos", datos);
+        this.pet_types = datos;
+      },
       error: error => console.log(error)
     });
+  }
+
+  onSubmit() {
+
   }
 }

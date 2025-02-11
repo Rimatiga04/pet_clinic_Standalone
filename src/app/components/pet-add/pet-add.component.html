@@ -1,1 +1,33 @@
+<div class="pet-form-container">
+  <h2>{{ accion }} Pet</h2>
 
+  <form (ngSubmit)="onSubmit()" #petForm="ngForm">
+    <!-- Name Field -->
+    <div class="form-group">
+      <label for="name">Pet Name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="pet.name" required class="form-control"
+        placeholder="Enter pet's name" />
+    </div>
+
+    <!-- Pet Type Dropdown -->
+    <div class="form-group">
+      <label for="petType">Pet Type:</label>
+      <select id="petType" name="type" [(ngModel)]="pet.type" class="form-control" required>
+        @for (type of pet_types; track type.id) {
+        <option [ngValue]="type">{{ type.name }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Birth Date Field -->
+    <div class="form-group">
+      <label for="birthDate">Birth Date:</label>
+      <input type="date" id="birthDate" name="birthDate" [(ngModel)]="pet.birthDate" class="form-control" required />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="!petForm.form.valid" class="btn btn-primary">
+      {{ accion }} Pet
+    </button>
+  </form>
+</div>

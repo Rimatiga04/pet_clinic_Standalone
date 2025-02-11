@@ -38,5 +38,5 @@
   </div>
   <button type="submit" class="btn btn-danger" [disabled]="!ownerForm.valid">{{textoBoton}}</button><!---->
   <span> | </span>
-  <button type="button" class="btn btn-warning" routerLink="/">Cancelar </button>
+  <button type="button" class="btn btn-warning" (click)="cancelar()">Cancelar </button>
 </form>

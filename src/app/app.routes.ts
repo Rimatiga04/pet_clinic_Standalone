@@ -5,6 +5,7 @@ import { DetailOwnerComponent } from './components/detail-owner/detail-owner.com
 import { VetsComponent } from './components/vets/vets.component';
 import { VetAddComponent } from './components/vet-add/vet-add.component';
 import { PettypeListComponent } from './components/pettype-list/pettype-list.component';
+import { PetAddComponent } from './components/pet-add/pet-add.component';
 
 export const routes: Routes = [
   {
@@ -30,5 +31,13 @@ export const routes: Routes = [
   {
     path: "petTypes",
     component: PettypeListComponent
+  },
+  {
+    path: "pet-add/:idOuner",
+    component: PetAddComponent
+  },
+  {
+    path: "pet-mod/:idPet",
+    component: PetAddComponent
   }
 ];

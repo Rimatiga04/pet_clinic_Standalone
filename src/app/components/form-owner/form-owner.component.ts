@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Owner } from '../../models/owner';
 import { OwnerService } from '../../services/owner.service';
-import { RouterLink, ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-owner',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule],
   templateUrl: './form-owner.component.html',
   styleUrl: './form-owner.component.css'
 })
@@ -50,9 +50,18 @@ export class FormOwnerComponent {
       this.peticion.modOwner(this.owner).subscribe({
         next: datos => {
           console.log("Owner Modificado");
-          this.ruta.navigate(["/"]);
+          this.ruta.navigate(["/owner-detail/" + this.owner.id]);
         }
       })
+    }
+  }
+  cancelar() {
+    const ownerId = this.router.snapshot.params["id"];
+    if (ownerId == -1) {
+      this.ruta.navigate(["/"]);
+    }
+    else {
+      this.ruta.navigate(["/owner-detail/" + ownerId]);
     }
   }
 }
