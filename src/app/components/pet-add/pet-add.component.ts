@@ -2,15 +2,15 @@ import { Component, Input } from '@angular/core';
 import { Pet } from '../../models/pet';
 import { PetType } from '../../models/pettype';
 import { Owner } from '../../models/owner';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PetService } from '../../services/pet.service';
 import { PetTypeService } from '../../services/pet-type.service';
 import { OwnerService } from '../../services/owner.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-pet-add',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './pet-add.component.html',
   styleUrl: './pet-add.component.css'
 })

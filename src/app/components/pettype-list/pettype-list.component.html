@@ -1,1 +1,24 @@
-<p>pettype-list works!</p>
+<div class="container">
+  <table class="table">
+    <thead>
+      <th>Nombre</th>
+    </thead>
+    <tbody>
+      @for(tipo of tipos; track $index){
+      <td class="d-flex align-items-center">
+        <input type="text" class="form-control w-25" [value]="tipo.name" readonly>
+        <button type="button" class="btn btn-default ml-2">Edit</button>
+        <button type="button" class="btn btn-default ml-2">Delete</button>
+      </td>
+      }
+    </tbody>
+    <button type="button" class="btn btn-default" (click)="mostrarForm()">Add Type</button>
+  </table>
+
+</div>
+
+@if(is_insert){
+<div class="container">
+  <app-pettype-add (newPetType)="onNewPettype($event)"></app-pettype-add>
+</div>
+}
