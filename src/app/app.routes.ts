@@ -6,6 +6,7 @@ import { VetsComponent } from './components/vets/vets.component';
 import { VetAddComponent } from './components/vet-add/vet-add.component';
 import { PettypeListComponent } from './components/pettype-list/pettype-list.component';
 import { PetAddComponent } from './components/pet-add/pet-add.component';
+import { SpecialtyListComponent } from './components/specialty-list/specialty-list.component';
 
 export const routes: Routes = [
   {
@@ -39,5 +40,10 @@ export const routes: Routes = [
   {
     path: "pet-mod/:idPet",
     component: PetAddComponent
+  },
+  {
+    path: "specialty",
+    component: SpecialtyListComponent
   }
+
 ];

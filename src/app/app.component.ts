@@ -50,6 +50,15 @@ export class AppComponent {
         label: 'Pet Types',
         icon: 'pi pi-heart',
         routerLink: 'petTypes'
+      },
+      {
+        label: 'Especialidades',
+        icon: 'pi pi-slack',
+        routerLink: 'specialty'
+      },
+      {
+        label: 'Log Out',
+        icon: 'pi pi-sign-out'
       }
     ]
   }
