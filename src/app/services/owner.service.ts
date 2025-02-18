@@ -1,55 +1,262 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment.development';
 import { Owner } from '../models/owner';
 import { Pet } from '../models/pet';
-import { environment } from '../../environments/environment.development';
-
-
-
+import { Visit } from '../models/visit';
+import { Vet } from '../models/vet';
+import { Pettype } from '../models/pettype';
 @Injectable({
   providedIn: 'root'
 })
 export class OwnerService {
+  private url = environment.API_URL;//Así llamamos a la url si tener que escribirla entera
 
-  private url = environment.API_URL;
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }//Muy importante ponerle el private
 
   getOwners() {
-    let cuerpo = {
-      accion: "ListarOwners"
-    }
-    return this.http.post<Owner[]>(this.url, cuerpo);
+    console.log("Que pasa mi jarma. esramos en getOwners");
+    let body = {
+      accion: "ListarOwners"//Este es el atributo que tenemos en servicio (acordarse de poner el mismo npobre del atributo al objeto que pasas)
+    };
+    return this.httpClient.post<Owner[]>(this.url, body);
+
+
   }
 
-  insertOwners(owner: Owner) {
-    let cuerpo = {
+  ListarVets() {
+    console.log("estamos en listarVets");
+    let body = {
+      accion: "ListarVets"//Este es el atributo que tenemos en servicio (acordarse de poner el mismo npobre del atributo al objeto que pasas)
+    };
+    return this.httpClient.post<Vet[]>(this.url, body);
+
+
+  }
+
+  insertOwner(owner: Owner) {
+
+    console.log("Estamos insertando a una personita");
+
+
+    console.log("Pa", owner);
+
+    let objOwner = {
       accion: "AnadeOwner",
       owner: owner
     }
-    return this.http.post<Owner[]>(this.url, cuerpo);
+    return this.httpClient.post(this.url, JSON.stringify(objOwner));//Así hemos tipado lo que nos devuleve. En este caso un array de Personas
+
+
   }
 
-  modOwner(owner: Owner) {
-    let cuerpo = {
+  ObtenerOwnerId(id: number) {
+    console.log("Estamos insertando a una personita");
+
+
+    console.log("Pa", id);
+
+    let objOwner = {
+      accion: "ObtenerOwnerId",
+      id: id
+    }
+    return this.httpClient.post<Owner>(this.url, JSON.stringify(objOwner));
+
+  }
+
+  modifyOwner(owner: Owner) {
+    console.log("Estamos insertando a una personita");
+
+
+    console.log("Pa", owner);
+
+    let objOwner = {
       accion: "ModificaOwner",
       owner: owner
     }
-    return this.http.post<Owner[]>(this.url, cuerpo);
+    return this.httpClient.post(this.url, JSON.stringify(objOwner));
   }
-  selOwner(id: number) {
-    let cuerpo = {
+
+  ModificaPettype(petType: Pettype) {
+    console.log("Estamos modificando un pettype");
+
+
+    console.log("Pa", petType);
+
+    let objOwner = {
+      accion: "ModificaPettype",
+      pettype: petType
+    }
+    return this.httpClient.post(this.url, objOwner);
+  }
+
+
+
+  deleteOwner(id: number) {
+    console.log("Estamos borrando a un propietario con id", id);
+
+
+    let objOwner = {
+      accion: "BorraOwner",
+      id: id,
+      listado: "NO"//Atento a esto que me lo pide la Api
+    }
+    return this.httpClient.post<any>(this.url, objOwner);
+
+  }
+
+  BorraPet(idPet: number) {
+    console.log("Estamos borrando a una pet con id", idPet);
+
+
+    let objPet = {
+      accion: "BorraPet",
+      id: idPet,
+
+    }
+    return this.httpClient.post<any>(this.url, objPet);
+  }
+
+  BorraPettype(idPetType: number) {
+    console.log("Estamos borrando a una pet con id", idPetType);
+
+
+    let objPet = {
+      accion: "BorraPettype",
+      id: idPetType,
+
+    }
+    return this.httpClient.post<any>(this.url, objPet);
+  }
+
+  BorraVisit(idVisita: number) {
+
+    console.log("Estamos borrando uan visita con id", idVisita);
+
+
+    let objPet = {
+      accion: "BorraVisit",
+      id: idVisita,
+
+    }
+    return this.httpClient.post<any>(this.url, objPet);
+
+  }
+
+
+
+  listarPetTypes() {
+    console.log("Que pasa mi jarma. estamos en listar tipos mascotas");
+    let body = {
+      accion: "ListarPettypes"//Este es el atributo que tenemos en servicio (acordarse de poner el mismo npobre del atributo al objeto que pasas)
+    };
+    return this.httpClient.post<Pet[]>(this.url, body);
+
+  }
+
+  AnadePet(idOwner: number, pet: Pet) {
+    console.log("esto es pet en anadePet", pet);
+    let obj = {
+      name: pet.name,
+      birthDate: pet.birthDate,
+      type: { id: pet.id },
+      owner: { id: idOwner }
+    };
+    let objPet = {
+      accion: "AnadePet",
+      pet: obj
+    }
+
+    console.log("esto es lo que le mando al servicio", objPet);
+    return this.httpClient.post(this.url, objPet);
+  }
+
+  AnadePettype(PetType: Pettype) {
+
+
+
+
+    console.log("Esto meto en anade petType", PetType);
+
+    let objOwner = {
+      accion: "AnadePettype",
+      pettype: PetType
+    }
+    return this.httpClient.post<Pettype>(this.url, objOwner);//Así hemos tipado lo que nos devuleve. En este caso un array de Personas
+
+
+  }
+  ObtenerOwnerId_Pets(id: number) {
+    console.log("Estamos listado pets de owner");
+    console.log("Pa", id);
+
+    let objOwner = {
       accion: "ObtenerOwnerId_Pets",
       id: id
     }
-    return this.http.post<Owner>(this.url, cuerpo);
+    return this.httpClient.post<Owner>(this.url, JSON.stringify(objOwner));
+
   }
 
-  delOwner(id: number) {
-    let cuerpo = {
-      accion: "BorraOwner",
-      id: id,
-      listado: "OK"
+  ListarVisitasPet(id: number) {
+    let objOwner = {
+      accion: "ListarVisitasPet",
+      id: id
     }
-    return this.http.post<Owner>(this.url, cuerpo);
+    return this.httpClient.post<Visit[]>(this.url, JSON.stringify(objOwner));
+
   }
+
+  AnadeVisit(visit: Visit) {
+    console.log("esto es pet en anadePet", visit);
+    let obj = {
+      petId: visit.pet,
+      visitDate: visit.visitDate,
+      description: visit.description
+    };
+    let objVisit = {
+      accion: "AnadeVisit",
+      visit: obj
+    }
+
+    console.log("esto es lo que le mando al servicio", objVisit);
+    return this.httpClient.post(this.url, objVisit);
+  }
+
+  ModificaPet(idOwner: number, pet: Pet, idPet: number) {
+    console.log("esto es pet en anadePet", pet);
+    let obj = {
+      name: pet.name,
+      birthDate: pet.birthDate,
+      type: { id: pet.id },
+      owner: { id: idOwner },
+      id: idPet
+    };
+    let objPet = {
+      accion: "ModificaPet",
+      pet: obj
+    }
+
+    console.log("esto es lo que le mando al servicio", objPet);
+    return this.httpClient.post(this.url, objPet);
+  }
+
+  ObtenerPetId(idPet: number) {
+    let objOwner = {
+      accion: "ObtenerPetId",
+      id: idPet
+    }
+    return this.httpClient.post<Pet>(this.url, JSON.stringify(objOwner));
+  }
+
+  ListarPettypes() {
+    console.log("Que pasa mi jarma. esramos en getOwners");
+    let body = {
+      accion: "ListarPettypes"//Este es el atributo que tenemos en servicio (acordarse de poner el mismo npobre del atributo al objeto que pasas)
+    };
+    return this.httpClient.post<Pettype[]>(this.url, body);
+
+
+  }
+
 }
